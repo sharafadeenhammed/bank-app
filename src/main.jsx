@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import HomeScreen from "./screens/HomeScreen.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { UserContextProvider } from "./context/UserContext.jsx";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -20,6 +21,8 @@ const BrowserRouter = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={BrowserRouter} />
+    <UserContextProvider>
+      <RouterProvider router={BrowserRouter} />
+    </UserContextProvider>
   </React.StrictMode>
 );
