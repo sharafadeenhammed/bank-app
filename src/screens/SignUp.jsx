@@ -1,16 +1,18 @@
 import { useContext, useState } from "react";
 import UserContext from "../context/UserContext";
+import AccountContext from "../context/AccountContext";
 import Spinner from "../components/Spinner";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 const SignUp = () => {
+  const navigate = useNavigate();
   const [isLoading, setisLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const { userReducerDispatcher } = useContext(UserContext);
-
+  const { accountReducerDispatcher } = useContext(AccountContext);
   const [userData, setUserData] = useState({
     first_name: "",
     last_name: "",
@@ -50,6 +52,23 @@ const SignUp = () => {
         throw user;
       }
       userReducerDispatcher({ payload: user.data, type: "setuser" });
+      // fetch account
+      let account = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/account/user`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+
+      account = await account.json();
+      account = account.data[0];
+      accountReducerDispatcher({ payload: account, type: "setaccount" });
+      toast.success(
+        `${user.data.first_name} your account is sucessfully created`
+      );
+      // redirect back to home page
+      navigate("/");
     } catch (error) {
       console.log(error);
       toast.error("something went wrong signing you up");
@@ -68,7 +87,7 @@ const SignUp = () => {
         }}
         animate={{
           width: "100%",
-          opacity: 1,
+          opacity: "1",
           transition: "1s",
         }}
         exit={{

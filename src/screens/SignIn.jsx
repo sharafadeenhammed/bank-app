@@ -40,7 +40,6 @@ const signIn = () => {
         body: JSON.stringify(userData),
       });
       const user = await res.json();
-      console.log(user);
       setisLoading(false);
       if (!res.ok) {
         throw user;
@@ -59,7 +58,6 @@ const signIn = () => {
 
       account = await account.json();
       account = account.data[0];
-      console.log(account);
 
       accountReducerDispatcher({ payload: account, type: "setaccount" });
 
@@ -83,7 +81,7 @@ const signIn = () => {
         }}
         animate={{
           width: "100%",
-          opacity: 1,
+          opacity: "1",
           transition: "1s",
         }}
         exit={{

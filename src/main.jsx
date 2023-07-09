@@ -17,9 +17,9 @@ import HomeScreen from "./screens/HomeScreen.jsx";
 import SignUp from "./screens/SignUp.jsx";
 import SignIn from "./screens/SignIn.jsx";
 import Profile from "./screens/Profile.jsx";
-import Fund from "./screens/Fund.jsx";
 import Transfer from "./screens/Transfer.jsx";
 import Transactions from "./screens/Transcations.jsx";
+import Fund from "./screens/Fund.jsx";
 const BrowserRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -29,6 +29,7 @@ const BrowserRouter = createBrowserRouter(
       <Route path="/profile" element={<Profile />} />
       <Route path="/fund" element={<Fund />} />
       <Route path="/transfer" element={<Transfer />} />
+      <Route path="/fund" element={<Fund />} />
       <Route path="/transaction" element={<Transactions />} />
     </Route>
   )
