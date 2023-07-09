@@ -14,7 +14,7 @@ const Header = () => {
             alt="logo"
           />
           {user.id ? (
-            <span className="fs-6 text-secondary">Hello {user.user_name}</span>
+            <span className="fs-6 text-secondary text-capitalize">{`${user.last_name} ${user.first_name}`}</span>
           ) : (
             ""
           )}
