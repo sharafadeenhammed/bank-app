@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { UserContextProvider } from "./context/UserContext.jsx";
+import { AccountContextProvider } from "./context/AccountContext.jsx";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -35,9 +36,11 @@ const BrowserRouter = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <UserContextProvider>
-      <RouterProvider router={BrowserRouter} />
-      <ToastContainer />
-    </UserContextProvider>
+    <AccountContextProvider>
+      <UserContextProvider>
+        <RouterProvider router={BrowserRouter} />
+        <ToastContainer />
+      </UserContextProvider>
+    </AccountContextProvider>
   </React.StrictMode>
 );

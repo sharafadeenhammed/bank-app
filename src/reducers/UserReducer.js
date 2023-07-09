@@ -11,6 +11,7 @@ const UserReducer = (initialState, action) => {
       localStorage.setItem("user", JSON.stringify(action.payload));
       return action.payload;
     case " clearuser":
+      localStorage.removeItem("account");
       console.log("clear user...");
       return {};
     default:

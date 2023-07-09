@@ -62,17 +62,17 @@ const SignUp = () => {
     <AnimatePresence>
       <motion.div
         initial={{
-          opacity: "0",
+          opacity: 0,
           width: "150%",
           transition: "1s",
         }}
         animate={{
           width: "100%",
-          opacity: "1",
+          opacity: 1,
           transition: "1s",
         }}
         exit={{
-          opacity: "0",
+          opacity: 0,
           width: "150%",
           transition: "1s",
         }}

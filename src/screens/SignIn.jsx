@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import UserContext from "../context/UserContext";
+import AccountContext from "../context/AccountContext";
 import Spinner from "../components/Spinner";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -13,6 +14,7 @@ const signIn = () => {
   const [isLoading, setisLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const { userReducerDispatcher } = useContext(UserContext);
+  const { accountReducerDispatcher } = useContext(AccountContext);
 
   const [userData, setUserData] = useState({
     email: "",
@@ -45,6 +47,23 @@ const signIn = () => {
       }
       toast.success(`welcome ${user.data.first_name}`);
       userReducerDispatcher({ payload: user.data, type: "setuser" });
+
+      // fetch account
+      let account = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/account/user`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+
+      account = await account.json();
+      account = account.data[0];
+      console.log(account);
+
+      accountReducerDispatcher({ payload: account, type: "setaccount" });
+
+      // redirect back to home page
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -58,17 +77,17 @@ const signIn = () => {
     <AnimatePresence>
       <motion.div
         initial={{
-          opacity: "0",
+          opacity: 0,
           width: "150%",
           transition: "1s",
         }}
         animate={{
           width: "100%",
-          opacity: "1",
+          opacity: 1,
           transition: "1s",
         }}
         exit={{
-          opacity: "0",
+          opacity: 0,
           width: "150%",
           transition: "1s",
         }}
