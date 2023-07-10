@@ -14,6 +14,7 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HomeScreen from "./screens/HomeScreen.jsx";
+import Header from "./components/Header.jsx";
 import SignUp from "./screens/SignUp.jsx";
 import SignIn from "./screens/SignIn.jsx";
 import Profile from "./screens/Profile.jsx";
@@ -39,6 +40,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AccountContextProvider>
       <UserContextProvider>
+        <Header />
         <RouterProvider router={BrowserRouter} />
         <ToastContainer />
       </UserContextProvider>

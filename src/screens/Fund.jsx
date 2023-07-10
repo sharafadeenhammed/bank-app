@@ -1,9 +1,8 @@
 import { useContext, useState } from "react";
 import AccountContext from "../context/AccountContext";
 import Spinner from "../components/Spinner";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -136,7 +135,7 @@ const Fund = () => {
                 required
                 className="input z-3 "
                 value={amount}
-                placeholder="Password"
+                placeholder="amount"
               />
             </Form.Group>
             <Form.Control

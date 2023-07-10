@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import UserContext from "../context/UserContext";
 import AccountContext from "../context/AccountContext";
 import Spinner from "../components/Spinner";
@@ -11,7 +11,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [isLoading, setisLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { userReducerDispatcher } = useContext(UserContext);
+  const { userReducerDispatcher, user } = useContext(UserContext);
   const { accountReducerDispatcher } = useContext(AccountContext);
   const [userData, setUserData] = useState({
     first_name: "",
@@ -24,6 +24,11 @@ const SignUp = () => {
   });
   const { first_name, last_name, email, age, address, phone_number, password } =
     userData;
+  // check if user is logged in
+  useEffect(() => {
+    if (user.first_name) navigate("/");
+  }, [user.first_name]);
+
   const onChangeData = (e) => {
     setUserData((initialData) => ({
       ...initialData,

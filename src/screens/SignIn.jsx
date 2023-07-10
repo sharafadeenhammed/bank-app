@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import UserContext from "../context/UserContext";
 import AccountContext from "../context/AccountContext";
 import Spinner from "../components/Spinner";
@@ -13,7 +13,7 @@ const signIn = () => {
   const navigate = useNavigate();
   const [isLoading, setisLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { userReducerDispatcher } = useContext(UserContext);
+  const { userReducerDispatcher, user } = useContext(UserContext);
   const { accountReducerDispatcher } = useContext(AccountContext);
 
   const [userData, setUserData] = useState({
@@ -21,6 +21,11 @@ const signIn = () => {
     password: "",
   });
   const { email, password } = userData;
+  // check if user is logged in
+  useEffect(() => {
+    if (user.first_name) navigate("/");
+  }, [user.first_name]);
+
   const onChangeData = (e) => {
     setUserData((initialData) => ({
       ...initialData,
@@ -64,8 +69,11 @@ const signIn = () => {
       // redirect back to home page
       navigate("/");
     } catch (error) {
-      console.log(error);
-      toast.error("incorrect email or password");
+      if (error.message === "Failed to fetch") {
+        toast.error("something went wrong check your internet connection");
+      } else {
+        toast.error("incorrect email or password");
+      }
       setisLoading(false);
     }
   };

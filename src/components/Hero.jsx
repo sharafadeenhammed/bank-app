@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
-import { Container, AccordionCollapse } from "react-bootstrap";
+import { useContext } from "react";
+import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 const Hero = () => {
-  const { userReducerDispatcher, user } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   return user?.first_name ? (
     <Container className="my-5 d-flex align-items-center justify-content-around p-5">
       <h1 className="fs-1 text-dark">Welcome {user.name}</h1>
