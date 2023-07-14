@@ -9,7 +9,6 @@ const TransactionItem = ({ transaction }) => {
       >
         <p className="fs-6 lead">
           {time.toDateString()} {time.getHours()}:{time.getMinutes()}
-          <br />
         </p>
         <p className="fs-5 lead">{transaction.beneficiary_name}</p>
         <p
