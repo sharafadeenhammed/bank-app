@@ -1,5 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import AccountContext from "../context/AccountContext";
+import UserContext from "../context/UserContext";
 import Spinner from "../components/Spinner";
 import { Container, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
@@ -10,11 +11,20 @@ const Fund = () => {
   const navigate = useNavigate();
   const [isLoading, setisLoading] = useState(false);
   const { accountReducerDispatcher, account } = useContext(AccountContext);
+  const { user } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     amount: "",
   });
   const { amount } = formData;
+
+  // check if user is still logged in
+  useEffect(() => {
+    if (!user.first_name) {
+      navigate("/login");
+    }
+  }, [user, account]);
+
   const onChangeData = (e) => {
     setFormData((initialData) => ({
       ...initialData,
@@ -90,8 +100,8 @@ const Fund = () => {
     <AnimatePresence>
       <motion.div
         initial={{
-          opacity: 0,
-          width: "150%",
+          opacity: "0",
+          width: "70%",
           transition: "1s",
         }}
         animate={{
@@ -106,8 +116,8 @@ const Fund = () => {
         }}
       >
         <Container className="my-5">
-          <h1 className="my-5 fs-1"> Fund Account</h1>
-          <Form onSubmit={handleSubmit}>
+          <h1 className="py-5 fs-1 textController"> Fund Account</h1>
+          <Form className="m-auto formController " onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label className="fs-5 fw-bold">
                 {`${account.account_holder_name}`}

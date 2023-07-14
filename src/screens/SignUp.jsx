@@ -87,8 +87,8 @@ const SignUp = () => {
       <motion.div
         initial={{
           opacity: 0,
-          width: "150%",
-          transition: "1s",
+          width: "50%",
+          transition: "1s linear",
         }}
         animate={{
           width: "100%",
@@ -102,8 +102,8 @@ const SignUp = () => {
         }}
       >
         <Container className="my-5">
-          <h1 className="my-5 fs-1"> Sign Up</h1>
-          <Form onSubmit={handleSubmit}>
+          <h1 className="py-5 fs-1 textController"> Sign Up</h1>
+          <Form className="formController m-auto" onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label className="fs-5 fw-bold">First Name</Form.Label>
               <Form.Control
@@ -192,14 +192,14 @@ const SignUp = () => {
               type="submit"
               value="Sign Up"
             ></Form.Control>
-          </Form>
 
-          <Row className="py-3">
-            <Col>
-              Already Have An Account? &nbsp;
-              <Link to="/login">Login</Link>
-            </Col>
-          </Row>
+            <Row className="py-3">
+              <Col>
+                Already Have An Account? &nbsp;
+                <Link to="/login">Login</Link>
+              </Col>
+            </Row>
+          </Form>
         </Container>
       </motion.div>
     </AnimatePresence>

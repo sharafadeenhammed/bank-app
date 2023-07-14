@@ -16,4 +16,10 @@ body {
   .input {
     width: 50%;
   }
+  .formController {
+    width: 50vw;
+  }
+  .textController {
+    text-align: center;
+  }
 }

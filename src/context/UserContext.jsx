@@ -27,7 +27,7 @@ export const UserContextProvider = ({ children }) => {
         throw new Error("user session expired");
       }
     } catch (error) {
-      accountReducerDispatcher({ type: "clearacccount" });
+      accountReducerDispatcher({ type: "clearaccount" });
       userReducerDispatcher({ type: "clearuser" });
       initialUser = {};
     }

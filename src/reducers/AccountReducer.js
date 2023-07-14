@@ -10,7 +10,7 @@ const AccountReducer = (initialState, action) => {
       console.log("set account...");
       localStorage.setItem("account", JSON.stringify(action.payload));
       return action.payload;
-    case "clearacccount":
+    case "clearaccount":
       localStorage.removeItem("account");
       console.log("clear account...");
       return {};
