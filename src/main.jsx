@@ -21,6 +21,7 @@ import Profile from "./screens/Profile.jsx";
 import Transfer from "./screens/Transfer.jsx";
 import Transactions from "./screens/Transcations.jsx";
 import Fund from "./screens/Fund.jsx";
+import Receipt from "./screens/Receipt.jsx";
 const BrowserRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -32,6 +33,7 @@ const BrowserRouter = createBrowserRouter(
       <Route path="/transfer" element={<Transfer />} />
       <Route path="/fund" element={<Fund />} />
       <Route path="/transaction" element={<Transactions />} />
+      <Route path="/receipt/:id" element={<Receipt />} />
     </Route>
   )
 );

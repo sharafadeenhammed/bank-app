@@ -147,7 +147,7 @@ const Transfer = () => {
       navigate("/");
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong funding your account");
+      toast.error("cannot complete transaction at this time");
       setisLoading(false);
     }
   };

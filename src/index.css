@@ -2,7 +2,7 @@
   --background-color: rgb(234, 233, 231);
 }
 * {
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   box-sizing: border-box;
 }
 body {

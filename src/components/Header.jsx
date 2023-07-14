@@ -11,7 +11,6 @@ import {
   FaHistory,
   FaBookOpen,
 } from "react-icons/fa";
-import { LinkContainer } from "react-router-bootstrap";
 const Header = () => {
   const [showBalance, setShowBalance] = useState(false);
   const { user, userReducerDispatcher } = useContext(UserContext);
@@ -20,6 +19,7 @@ const Header = () => {
   const logout = () => {
     userReducerDispatcher({ type: "clearuser" });
     accountReducerDispatcher({ type: "clearaccount" });
+    window.location.pathname = "/";
   };
   return (
     <Navbar expand="lg" className="navbar-dark bg-dark">
@@ -60,33 +60,31 @@ const Header = () => {
           <Nav className="ms-auto">
             {user?.first_name ? (
               <>
-                {/* <LinkContainer to="/transfer"> */}
                 <Nav.Item>
                   <Nav.Link href="/transfer">
                     Transfer <FaPaperPlane />
                   </Nav.Link>
                 </Nav.Item>
-                {/* </LinkContainer> */}
                 <Nav.Item>
-                  <Nav.Link>
+                  <Nav.Link href="/profile">
                     {" "}
-                    Profile <FaUser />{" "}
+                    Profile <FaUser />
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link>
+                  <Nav.Link href="/transaction">
                     {" "}
-                    Transaction History <FaHistory />{" "}
+                    Transaction History <FaHistory />
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link href="/fund">
-                    Fund Account <FaMoneyCheck />{" "}
+                    Fund Account <FaMoneyCheck />
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item onClick={logout}>
                   <Nav.Link>
-                    Logout <FaArrowAltCircleLeft />{" "}
+                    Logout <FaArrowAltCircleLeft />
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
@@ -104,9 +102,7 @@ const Header = () => {
                   <Nav.Link href="/login">Login</Nav.Link>
                 </Nav.Item>
                 <Nav.Item className="d-flex">
-                  <Nav.Link target="_blank" href="/register">
-                    Sign Up
-                  </Nav.Link>
+                  <Nav.Link href="/register">Sign Up</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link
