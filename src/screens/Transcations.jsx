@@ -9,6 +9,7 @@ const Transcations = () => {
   const navigate = useNavigate();
   const { account } = useContext(AccountContext);
   const [isLoading, setIsLoading] = useState(true);
+  const [message, setMessgae] = useState(true);
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
@@ -39,12 +40,19 @@ const Transcations = () => {
         return timeB - timeA;
       });
       setTransactions(sortData);
+      if (sortData.length <= 0) {
+        setMessgae("No Transactions Yet");
+      }
       setIsLoading(false);
     } catch (error) {
+      console.log(error.message);
       // check if it is a network error
-      if (error.messgage === "Failed to fetch") {
+      if (error.message === "Failed to fetch") {
         console.log("failed to fetch newtwork error");
-        toast.error("error fetching trasactions");
+        setMessgae("failed to fetch recent transactions newtwork error");
+        setIsLoading(false);
+      } else {
+        setMessgae("Something went wrong fetching transactions");
         setIsLoading(false);
       }
     }
@@ -66,7 +74,12 @@ const Transcations = () => {
     </Container>
   ) : (
     <Container className="p-5 m-5 text-center">
-      <h1 className="text-danger">No Transaction</h1>
+      <h1
+        className="text-danger m-2 p-2 rounded"
+        style={{ backgroundColor: "rgba(200,50,50,0.2)" }}
+      >
+        {message}
+      </h1>
     </Container>
   );
 };

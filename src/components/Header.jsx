@@ -11,15 +11,26 @@ import {
   FaHistory,
   FaBookOpen,
 } from "react-icons/fa";
+import { toast } from "react-toastify";
 const Header = () => {
   const [showBalance, setShowBalance] = useState(false);
   const { user, userReducerDispatcher } = useContext(UserContext);
   const { account, accountReducerDispatcher } = useContext(AccountContext);
 
-  const logout = () => {
-    userReducerDispatcher({ type: "clearuser" });
-    accountReducerDispatcher({ type: "clearaccount" });
-    window.location.pathname = "/";
+  const logout = async () => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/auth/logout/`, {
+        credentials: "include",
+      });
+      if (!res.ok) {
+        throw data;
+      }
+      userReducerDispatcher({ type: "clearuser" });
+      accountReducerDispatcher({ type: "clearaccount" });
+      window.location.pathname = "/";
+    } catch (error) {
+      toast.error("cant log you out at the moment");
+    }
   };
   return (
     <Navbar expand="lg" className="navbar-dark bg-dark">
