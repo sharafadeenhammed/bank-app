@@ -12,6 +12,7 @@ import {
   FaBookOpen,
 } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { LinkContainer } from "react-router-bootstrap";
 const Header = () => {
   const [showBalance, setShowBalance] = useState(false);
   const { user, userReducerDispatcher } = useContext(UserContext);
@@ -35,14 +36,15 @@ const Header = () => {
   return (
     <Navbar expand="lg" className="navbar-dark bg-dark">
       <Container>
+        {/* <LinkContainer> */}
+        <img
+          style={{ objectFit: "cover" }}
+          className="img-flush p-1 bg-light rounded mx-2 "
+          src={user.img_url ? user.img_url : logo}
+          alt="logo"
+        />
+        {/* </LinkContainer> */}
         <Navbar.Brand className="d-flex ">
-          <img
-            style={{ objectFit: "cover" }}
-            className="img-flush p-1 bg-light rounded mx-2 "
-            src={user.img_url ? user.img_url : logo}
-            alt="logo"
-          />
-
           {user.first_name ? (
             <div className="d-inline-block">
               <span className="fs-6 fw-bold text-secondary text-capitalize">{`${user.last_name} ${user.first_name}`}</span>

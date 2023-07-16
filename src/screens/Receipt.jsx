@@ -37,11 +37,9 @@ const Receipt = () => {
       if (!req.ok) {
         throw data;
       }
-      console.log(data.data);
       setTransaction(data.data);
       setisLoading(false);
     } catch (error) {
-      console.log(error.message);
       // check if its is a network error
       if (error.message === "Failed to fetch") {
         setMessage("Failed to fetch transaction network error");
