@@ -6,7 +6,6 @@ const UserReducer = (initialState, action) => {
       user = JSON.parse(user);
       return { ...user };
     case "setuser":
-      console.log("set user...");
       localStorage.setItem("user", JSON.stringify(action.payload));
       return action.payload;
     case "clearuser":

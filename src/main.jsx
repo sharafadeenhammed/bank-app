@@ -42,7 +42,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AccountContextProvider>
       <UserContextProvider>
-        <Header />
         <RouterProvider router={BrowserRouter} />
         <ToastContainer />
       </UserContextProvider>

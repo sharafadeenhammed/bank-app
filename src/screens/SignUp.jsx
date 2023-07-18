@@ -51,7 +51,6 @@ const SignUp = () => {
         }
       );
       const user = await res.json();
-      console.log(user);
       setisLoading(false);
       if (!res.ok) {
         throw user;

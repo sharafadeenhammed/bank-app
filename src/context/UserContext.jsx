@@ -3,7 +3,8 @@ import AccountContext from "../context/AccountContext";
 import UserReducer from "../reducers/UserReducer";
 const UserContext = createContext();
 let initialUser = localStorage.getItem("user");
-if (initialUser) initialUser = JSON.parse(initialUser);
+if (initialUser && initialUser !== "undefined")
+  initialUser = JSON.parse(initialUser);
 else initialUser = {};
 
 // context provider component....
@@ -23,7 +24,6 @@ export const UserContextProvider = ({ children }) => {
       });
       const data = await res.json();
       if (!res.ok) {
-        console.log(data);
         throw new Error("user session expired");
       }
     } catch (error) {

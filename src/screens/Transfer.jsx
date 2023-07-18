@@ -72,10 +72,9 @@ const Transfer = () => {
         setisLoadingAccount(false);
         setAccountFound(true);
       } catch (error) {
-        console.log(error.message);
         // check if its is a network error
         if (error.messgage === "Failed to fetch") {
-          console.log("failed to fetch newtwork error");
+          console.log("failed to verify account newtwork error");
           setMessage("connection error");
         }
         if (`account with account number ${ref.current.value} not found`) {
@@ -178,7 +177,8 @@ const Transfer = () => {
             Transfer
             <p className="fs-6 py-2 lead">
               Ask your friend for their account number or use this account
-              number <span className="h6">1688928385</span> to test
+              number <span className="h6 badge bg-success">1688928385</span> to
+              test
             </p>
           </h1>
 
@@ -205,8 +205,7 @@ const Transfer = () => {
                 ) : !isLoadingAccount && accountFound ? (
                   <p className="lead fs-6  ">
                     <span className="d-inline-block bg-light p-2 rounded">
-                      {" "}
-                      {message}{" "}
+                      {message}
                     </span>
                   </p>
                 ) : (
@@ -229,7 +228,7 @@ const Transfer = () => {
             <Form.Control
               className="my-3 btn btn-success"
               type="submit"
-              value="Fund"
+              value="Send"
               disabled={!isSubmit}
             ></Form.Control>
           </Form>

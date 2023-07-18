@@ -2,7 +2,8 @@ import { createContext, useReducer } from "react";
 import AccountReducer from "../reducers/AccountReducer";
 const AccountContext = createContext();
 let initialAccount = localStorage.getItem("account");
-if (initialAccount) initialAccount = JSON.parse(initialAccount);
+if (initialAccount !== "undefined" && initialAccount)
+  initialAccount = JSON.parse(initialAccount);
 else initialAccount = {};
 export const AccountContextProvider = ({ children }) => {
   const [account, dispatch] = useReducer(AccountReducer, initialAccount);
