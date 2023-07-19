@@ -19,10 +19,10 @@ const SignUp = () => {
     email: "",
     age: "",
     address: "",
-    phone_number: "",
+    phone: "",
     password: "",
   });
-  const { first_name, last_name, email, age, address, phone_number, password } =
+  const { first_name, last_name, email, age, address, phone, password } =
     userData;
   // check if user is logged in
   useEffect(() => {
@@ -159,7 +159,7 @@ const SignUp = () => {
               />
               <Form.Label className="fs-5 fw-bold">Phone</Form.Label>
               <Form.Control
-                id="phone_number"
+                id="phone"
                 type="text"
                 required
                 className=" input z-3 "
