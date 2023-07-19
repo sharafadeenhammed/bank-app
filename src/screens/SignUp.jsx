@@ -164,7 +164,7 @@ const SignUp = () => {
                 required
                 className=" input z-3 "
                 onChange={onChangeData}
-                value={phone_number}
+                value={phone}
                 placeholder="Phone Number"
               />
               <Form.Label className="fs-5 fw-bold">Enter Password</Form.Label>
