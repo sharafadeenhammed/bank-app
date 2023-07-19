@@ -49,11 +49,8 @@ const signIn = () => {
       if (!res.ok) {
         throw user;
       }
-      toast.success(`welcome ${user.data.first_name}`);
-      userReducerDispatcher({ payload: user.data, type: "setuser" });
-
       // fetch account
-      let account = await fetch(
+      const account = await fetch(
         `${import.meta.env.VITE_BASE_URL}/account/user`,
         {
           method: "GET",
@@ -61,12 +58,17 @@ const signIn = () => {
         }
       );
 
-      account = await account.json();
-      account = account.data[0];
-
-      accountReducerDispatcher({ payload: account, type: "setaccount" });
+      let accountData = await account.json();
+      console.log(accountData);
+      if (!account.ok) {
+        throw {};
+      }
+      accountData = accountData.data[0];
+      accountReducerDispatcher({ payload: accountData, type: "setaccount" });
+      userReducerDispatcher({ payload: user.data, type: "setuser" });
 
       // redirect back to home page
+      toast.success(`welcome ${user.data.first_name}`);
       navigate("/");
     } catch (error) {
       if (error.message === "Failed to fetch") {

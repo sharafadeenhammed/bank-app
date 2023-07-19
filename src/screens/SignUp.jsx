@@ -114,7 +114,9 @@ const SignUp = () => {
                 value={first_name}
                 placeholder="Enter First Name"
               />
-              <Form.Label className=" fs-5 fw-bold">Last Name</Form.Label>
+              <Form.Label className=" fs-5 fw-bold">
+                Last Name/Surname
+              </Form.Label>
               <Form.Control
                 id="last_name"
                 type="text"
