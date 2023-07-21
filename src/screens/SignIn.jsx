@@ -59,7 +59,6 @@ const signIn = () => {
       );
 
       let accountData = await account.json();
-      console.log(accountData);
       if (!account.ok) {
         throw {};
       }

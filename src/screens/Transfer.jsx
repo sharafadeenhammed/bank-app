@@ -42,7 +42,11 @@ const Transfer = () => {
     }));
 
     // check amount and account validity for form submission
-    if (amountRef.current.value > 0.0 && accountFound) {
+    if (
+      amountRef.current.value > 0.0 &&
+      accountFound &&
+      ref.current.value.length >= 10
+    ) {
       setIsSubmit(true);
     } else {
       setIsSubmit(false);
@@ -73,15 +77,14 @@ const Transfer = () => {
         setAccountFound(true);
       } catch (error) {
         // check if its is a network error
-        if (error.messgage === "Failed to fetch") {
-          console.log("failed to verify account newtwork error");
-          setMessage("connection error");
-        }
-        if (`account with account number ${ref.current.value} not found`) {
-          console.log(error.message);
+        console.log(error);
+        if (error.message === "Failed to fetch") {
+          setMessage("failed to verify account intenet connection error");
+        } else {
           setMessage(error.message);
         }
         setisLoadingAccount(false);
+        setAccountFound(true);
       }
     }
   };
@@ -204,7 +207,9 @@ const Transfer = () => {
                   </span>
                 ) : !isLoadingAccount && accountFound ? (
                   <p className="lead fs-6  ">
-                    <span className="d-inline-block bg-light p-2 rounded">
+                    <span
+                      className={"d-inline-block bg-light p-2 rounded fw-700 "}
+                    >
                       {message}
                     </span>
                   </p>

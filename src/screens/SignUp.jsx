@@ -74,9 +74,12 @@ const SignUp = () => {
       // redirect back to home page
       navigate("/");
     } catch (error) {
-      console.log(error);
-      toast.error("something went wrong signing you up");
-      setisLoading(false);
+      if (error.message === "Failed to Fetch") {
+        toast.error("internet cponnection error");
+      } else {
+        toast.error(error.message);
+        setisLoading(false);
+      }
     }
   };
   return isLoading ? (
