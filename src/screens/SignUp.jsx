@@ -75,7 +75,7 @@ const SignUp = () => {
       navigate("/");
     } catch (error) {
       if (error.message === "Failed to Fetch") {
-        toast.error("internet cponnection error");
+        toast.error("internet connection error");
       } else {
         toast.error(error.message);
         setisLoading(false);
