@@ -119,7 +119,7 @@ const Header = () => {
                   <Nav.Item>
                     <Nav.Link
                       target="_blank"
-                      href="https://documenter.getpostman.com/view/20324776/2s93RNyEuB"
+                      href="https://documenter.getpostman.com/view/20324776/2s946iaqNP"
                     >
                       View api <FaBookOpen />
                     </Nav.Link>
