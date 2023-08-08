@@ -79,7 +79,7 @@ const Receipt = () => {
             </p>
             <p className="h3 flex-wrap lead bg-white d-flex justify-content-between">
               <span>Account</span>
-              {transaction.sender_account_number}
+              {transaction.beneficiary_account_number}
             </p>
             <p className="h3 flex-wrap lead bg-light d-flex justify-content-between">
               <span>Amount</span>
