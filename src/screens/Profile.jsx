@@ -2,7 +2,7 @@ const Profile = () => {
   return (
     <div>
       <center>
-        <h1>This page is n the works !</h1>
+        <h1>This page is in the works !</h1>
       </center>
     </div>
   );

@@ -27,10 +27,26 @@ export const UserContextProvider = ({ children }) => {
         throw new Error("user session expired");
       }
     } catch (error) {
+      await fetchAccount();
       accountReducerDispatcher({ type: "clearaccount" });
       userReducerDispatcher({ type: "clearuser" });
       initialUser = {};
     }
+  };
+
+  const fetchAccount = async () => {
+    // fetch account
+    let updatedAccount = await fetch(
+      `${import.meta.env.VITE_BASE_URL}/account/user`,
+      {
+        method: "GET",
+        credentials: "include",
+      }
+    );
+
+    updatedAccount = await updatedAccount.json();
+    updatedAccount = updatedAccount.data[0];
+    accountReducerDispatcher({ payload: updatedAccount, type: "setaccount" });
   };
   const [user, dispatch] = useReducer(UserReducer, initialUser);
 

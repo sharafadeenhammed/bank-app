@@ -126,11 +126,11 @@ const Transfer = () => {
       newAccount = await newAccount.json();
       newAccount = newAccount.data[0];
 
-      accountReducerDispatcher({ payload: newAccount, type: "setaccount" });
       if (!res.ok) {
         throw user;
       }
       setisLoading(false);
+      accountReducerDispatcher({ payload: newAccount, type: "setaccount" });
       toast.success(`Transfer to ${beneficiaryAccount} sucessful`);
 
       // fetch account
