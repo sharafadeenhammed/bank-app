@@ -5,6 +5,13 @@
   /* overflow-x: hidden; */
   box-sizing: border-box;
 }
+.profile-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  display: inline-block;
+  object-fit: cover;
+}
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--background-color);
