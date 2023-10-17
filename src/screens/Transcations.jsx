@@ -63,14 +63,22 @@ const Transcations = () => {
   ) : transactions.length > 0 ? (
     <Container className="formController m-auto m-3 p-5">
       <h1 className="py-5 fs-1 textController"> Trasactions</h1>
-      <div className="d-flex justify-content-between align-items-center my-1 ">
-        <p className="fs-5">Date</p>
-        <p className="fs-5">Name</p>
-        <p className="fs-5">Amount</p>
-      </div>
-      {transactions.map((transaction, index) => {
-        return <TransactionItem key={index} transaction={transaction} />;
-      })}
+      {/*  */}
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Name</th>
+            <th scope="col">Amount</th>
+            <th scope="col">action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {transactions.map((transaction, index) => {
+            return <TransactionItem key={index} transaction={transaction} />;
+          })}
+        </tbody>
+      </table>
     </Container>
   ) : (
     <Container className="p-5 m-5 text-center">
