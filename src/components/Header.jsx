@@ -40,7 +40,11 @@ const Header = () => {
   return (
     <>
       {/* <LinkContainer></LinkContainer> */}
-      <Navbar expand="lg" className="navbar-dark bg-dark" collapseOnSelect>
+      <Navbar
+        expand="lg"
+        className=" position-fixed w-100 top-0 navbar-dark bg-dark"
+        collapseOnSelect
+      >
         <Container>
           <Navbar.Brand className="d-flex ">
             <LinkContainer to="/" style={{ cursor: "pointer" }}>
@@ -53,7 +57,7 @@ const Header = () => {
             </LinkContainer>
             {user.first_name ? (
               <div className="d-inline-block">
-                <span className="fs-6 fw-bold text-secondary text-capitalize">{`${user.last_name} ${user.first_name}`}</span>
+                <span className="fs-6 fw-bold text-secondary text-capitalize">{`${user.first_name} ${user.last_name}`}</span>
                 <div
                   style={{ cursor: "pointer" }}
                   onClick={() =>
