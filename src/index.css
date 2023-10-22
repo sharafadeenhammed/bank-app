@@ -13,6 +13,7 @@
   border: 1px solid #f1eaea;
   display: inline-block;
   object-fit: cover;
+  margin-bottom: 10px;
 }
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
