@@ -1,6 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 import Spinner from "../components/Spinner";
 import UserContext from "../context/UserContext";
@@ -11,6 +12,12 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { user, userReducerDispatcher } = useContext(UserContext);
   const [userData, setUserData] = useState(user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user.id) {
+      navigate("/login");
+    }
+  }, [user]);
   const handleChange = (e) => {
     const data = {
       ...userData,

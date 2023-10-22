@@ -17,8 +17,8 @@ const Receipt = () => {
 
   // check if user is still logged in
   useEffect(() => {
-    if (!user.first_name) {
-      navigate("/login");
+    if (!user.id) {
+      return navigate("/login");
     }
     findTransction();
   }, [user]);

@@ -1,25 +1,27 @@
 import { useEffect, useState, useContext } from "react";
-import AccountContext from "../context/AccountContext";
 import { toast } from "react-toastify";
-import Spinner from "../components/Spinner";
 import { useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
+
+import UserContext from "../context/UserContext";
+import Spinner from "../components/Spinner";
+import AccountContext from "../context/AccountContext";
 import TransactionItem from "../components/TransactionItem";
 const Transcations = () => {
   const navigate = useNavigate();
   const { account } = useContext(AccountContext);
+  const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessgae] = useState(true);
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
-    if (!account.id) {
-      navigate("/");
-      return;
+    if (!account.id || !user.id) {
+      return navigate("/");
     }
     // fetch transactions
     fetchTransactions();
-  }, []);
+  }, [user, account]);
 
   const fetchTransactions = async () => {
     try {

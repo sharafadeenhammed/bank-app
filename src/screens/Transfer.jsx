@@ -79,7 +79,7 @@ const Transfer = () => {
         // check if its is a network error
         console.log(error);
         if (error.message === "Failed to fetch") {
-          setMessage("failed to verify account intenet connection error");
+          setMessage("failed to verify check your intenet connection");
         } else {
           setMessage(error.message);
         }
@@ -94,7 +94,7 @@ const Transfer = () => {
     setisLoading(true);
     // check for account balance sufficiency
     if (amount > account.balance) {
-      toast.error("insufficient fund");
+      toast.error("insufficient account balance");
       setisLoading(false);
       return;
     }
@@ -110,46 +110,35 @@ const Transfer = () => {
           body: JSON.stringify(formData),
         }
       );
+      const data = await res.json();
       if (!res.ok) {
-        throw res;
+        throw new Error(data.message);
       }
-      const fundResult = await res.json();
+
       // fetch account
-      let newAccount = await fetch(
+      const getAccount = await fetch(
         `${import.meta.env.VITE_BASE_URL}/account/user`,
         {
           method: "GET",
           credentials: "include",
         }
       );
-
-      newAccount = await newAccount.json();
-      newAccount = newAccount.data[0];
-
-      if (!res.ok) {
-        throw user;
+      if (!getAccount.ok) {
+        throw new Error();
       }
+
+      const newAccount = await getAccount.json();
       setisLoading(false);
-      accountReducerDispatcher({ payload: newAccount, type: "setaccount" });
+      accountReducerDispatcher({
+        payload: newAccount.data,
+        type: "setaccount",
+      });
       toast.success(`Transfer to ${beneficiaryAccount} sucessful`);
 
-      // fetch account
-      let updatedAccount = await fetch(
-        `${import.meta.env.VITE_BASE_URL}/account/user`,
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
-
-      updatedAccount = await updatedAccount.json();
-      updatedAccount = updatedAccount.data[0];
-      accountReducerDispatcher({ payload: updatedAccount, type: "setaccount" });
-      // redirect back to home page
       navigate("/");
     } catch (error) {
       console.log(error);
-      toast.error("cannot complete transaction at this time");
+      toast.error(error.message);
       setisLoading(false);
     }
   };

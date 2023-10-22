@@ -58,12 +58,14 @@ const signIn = () => {
         }
       );
 
-      let accountData = await account.json();
+      const accountData = await account.json();
       if (!account.ok) {
         throw {};
       }
-      accountData = accountData.data[0];
-      accountReducerDispatcher({ payload: accountData, type: "setaccount" });
+      accountReducerDispatcher({
+        payload: accountData.data,
+        type: "setaccount",
+      });
       userReducerDispatcher({ payload: user.data, type: "setuser" });
 
       // redirect back to home page
