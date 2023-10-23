@@ -73,7 +73,7 @@ const Fund = () => {
       );
 
       // fetch account
-      let updatedAccount = await fetch(
+      const getAccount = await fetch(
         `${import.meta.env.VITE_BASE_URL}/account/user`,
         {
           method: "GET",
@@ -81,10 +81,12 @@ const Fund = () => {
         }
       );
 
-      updatedAccount = await updatedAccount.json();
-      updatedAccount = updatedAccount.data[0];
+      const updatedAccount = await updatedAccount.json();
 
-      accountReducerDispatcher({ payload: updatedAccount, type: "setaccount" });
+      accountReducerDispatcher({
+        payload: updatedAccount.data,
+        type: "setaccount",
+      });
 
       // redirect back to home page
       navigate("/");
