@@ -46,32 +46,11 @@ const Fund = () => {
           body: JSON.stringify({ amount: amount }),
         }
       );
-      if (!res.ok) {
-        throw res;
-      }
       const fundResult = await res.json();
-      setisLoading(false);
-
-      // fetch account
-      let newAccount = await fetch(
-        `${import.meta.env.VITE_BASE_URL}/account/user`,
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
-
-      newAccount = await newAccount.json();
-      newAccount = newAccount.data[0];
-
-      accountReducerDispatcher({ payload: newAccount, type: "setaccount" });
       if (!res.ok) {
-        throw user;
+        throw new Error(fundResult.message);
       }
-      toast.success(
-        `account sucessfully funded with ${fundResult.data.amount}`
-      );
-
+      setisLoading(false);
       // fetch account
       const getAccount = await fetch(
         `${import.meta.env.VITE_BASE_URL}/account/user`,
@@ -81,12 +60,18 @@ const Fund = () => {
         }
       );
 
-      const updatedAccount = await updatedAccount.json();
+      const newAccount = await getAccount.json();
 
       accountReducerDispatcher({
-        payload: updatedAccount.data,
+        payload: newAccount.data,
         type: "setaccount",
       });
+      if (!res.ok) {
+        throw user;
+      }
+      toast.success(
+        `account sucessfully funded with $${fundResult.data.amount}`
+      );
 
       // redirect back to home page
       navigate("/");
