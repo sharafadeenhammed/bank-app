@@ -7,6 +7,7 @@ import { UserContextProvider } from "./context/UserContext.jsx";
 import { AccountContextProvider } from "./context/AccountContext.jsx";
 import {
   createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
@@ -22,7 +23,7 @@ import Transfer from "./screens/Transfer.jsx";
 import Transactions from "./screens/Transcations.jsx";
 import Fund from "./screens/Fund.jsx";
 import Receipt from "./screens/Receipt.jsx";
-const BrowserRouter = createBrowserRouter(
+const BrowserRouter = createHashRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
